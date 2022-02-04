@@ -1,0 +1,14 @@
+#form div{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+
+    display: flex;
+    display: grid;
+    display: inline;
+    display: inline-block;
+    display: block;
+    display: table;
+    display: none;
+
+}

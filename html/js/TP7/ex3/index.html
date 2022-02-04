@@ -1,0 +1,21 @@
+<html>
+
+<body>
+<p>Bonjour Etudiant SMI S3!</p>
+<div id="main">
+<p>le DOM est  très important. </p>
+<p> cet exemple démontre que la méthode
+  <b>getElementsByTagName</b>
+  de modifier le contenu d’un paragraphe</p>
+</div>
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("main");
+var y = x.getElementsByTagName("p");
+document.getElementById("demo").innerHTML = 'le premier paragraphe (index 0) a l’interieur de "main" e s t: ' +\
+ y[0].innerHTML;
+</script>
+</body>
+
+</html>

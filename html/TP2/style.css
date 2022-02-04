@@ -1,0 +1,49 @@
+*,*::before,*::after{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+
+
+body{
+    position: relative;
+    height: 100vh;
+    background-color: #eee;
+
+}
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.square{
+    width: 300px;
+    height: 150px;
+    background-color: #000;
+}
+
+.circle{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    background-color: #eee;
+    /* display: inline-block; */
+    position: absolute;
+}
+.c1{
+    transform: translate(-15px,-16px);
+}
+.c2{
+    transform: translate(265px,-16px);   
+}
+
+.c3{
+    transform: translate(-15px,-27px);
+}
+.c4{
+    transform: translate(265px,-27px);    
+}
+

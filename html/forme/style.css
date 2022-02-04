@@ -1,0 +1,27 @@
+*,*::after,*::before{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-size: 21px;
+}
+#form{
+    display: table;
+    margin: 0 auto;
+    width: 90%;
+}
+#form div{
+    display: table-row;
+    padding: 10px;
+}
+label, input{
+    display: table-cell;
+    margin-bottom: 15px;
+}
+.btn{
+    padding: .5rem;
+}
+#sub{
+    width: 20rem;
+}

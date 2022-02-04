@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <form name="calcul">
+        <input type="text" name="num1" class="num">
+        <input type="text" name="num2" class="num">
+        <input type="text" name="result" id="result"><br/>
+
+        <!-- <input   type="button"   id="sum"   value="sum"    name="sum" onClick="sum"  >
+        <input  onclick="sub()"   type="button"   id="sub"   value="sub"    name="sub">
+        <input onclick="multi()"  type="button"   id="multi" value="multi"  name="multi" >
+        <input onclick="div()"    type="button"   id="div"   value="div"    name="div" > -->
+
+    </form>
+
+    <button onclick="sum()" id="sum">sum</button>
+    <button onclick="sub()" id="sum">sub</button>
+    <button onclick="multi()" id="multi">multi</button>
+    <button onclick="div()" id="div">div</button>
+
+      <script src="app.js">
+              function sum() {
+        a = document.calcul.num1.value;
+        b = document.calcul.num2.value;
+        document.calcul.result.value = parseInt(a)+parseInt(b);    }
+    
+    function sub(){
+        a = document.calcul.num1.value;
+        b = document.calcul.num2.value;
+        document.calcul.result.value = parseInt(a)- parseInt(b);
+    }
+    
+    function multi(){
+        a = document.calcul.num1.value;
+        b = document.calcul.num2.value;
+        document.calcul.result.value = parseInt(a) * parseInt(b);
+    }
+    
+    function div(){
+        a = document.calcul.num1.value;
+        b = document.calcul.num2.value;
+        document.calcul.result.value = parseInt(a) / parseInt(b);
+    }
+    
+
+      </script>
+</body>
+</html>

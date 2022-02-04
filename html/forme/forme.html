@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form action="mailto:ahmed@devguetti.com" method="post" id="form">
+        <div id="r1">
+            <label for="civi"><b>Civilite  </b></label>
+
+            <input type="radio"  id="made" name="civi">Mademoiselle
+
+            <input type="radio"  id="mada" name="civi">Madame
+
+            <input type="radio"  id="mon" name="civi">Monsieur
+        </div>
+
+        <div id="r2">
+            <label for="nom"><b> Nom / Prenom </b></label>
+            <input type="text" id="name" name="name">
+        </div>
+
+        <div id="r3">
+            <label for="addresse"><b> addresse </b></label>
+            <textarea name="addresse" id="addresse" cols="50" rows="1">Rue No Boite postale</textarea>
+        </div>
+
+        <div id="r4">
+            <label for="local"><b> No postal/ Localite </b></label>
+            <input type="text" name="local"style="width: 50px;">
+            <input type="text" name="local" value="Jendouba">
+        </div>
+
+        <div id="r5">
+            <label for="pays"><b>Pays </b></label>
+            <select name="pays" id="pays">
+                <option value="Tunisie">Tunusie</option>
+                <option value="Morocco">Morocco</option>
+                <option value="France">France</option>
+                <option value="Italie">Italie</option>
+            </select>
+        </div>
+
+        <div id="r6">
+            <label for="plat"><b>Platform </b></label>
+            
+            <input type="checkbox"  id="Windows" name="Windows">Windows
+            <input type="checkbox"  id="Macintoch" name="Macintoch">Macintoch
+            <input type="checkbox"  id="Unix" name="Unix">Unix
+        </div>
+
+        <div id="r7">
+            <label for="app"><b>Applications(s) </b></label>
+            <select name="app" id="app" size="5">
+                <option value="Bureautique">Bureautique</option>
+                <option value="DAO">DAO</option>
+                <option value="Statistique">Statistique</option>
+                <option value="SGBD">SGBD</option>
+                <option value="Internet">Internet</option>
+            </select>
+        </div>
+        <div id="r8">
+            <label for="btn"></label>
+            <input class="btn" id="sub"type="submit" value="Somettre formulaire">
+            <input class="btn" type="reset" value="Effacet">
+        </div>
+            
+
+
+
+
+    </form>
+</body>
+</html>
+
