@@ -11,33 +11,35 @@
 int main() {
 	char A[MAX_ARRAY_STRING_A][MAX_STRING_CAP];
 	char B[MAX_ARRAY_STRING_B][MAX_STRING_CAP];
-	char FUS[MAX_ARRAY_STRING_A + MAX_ARRAY_STRING_B][MAX_STRING_CAP];
-	int i=0;
+	
+	int n=0;
 	printf("A : \n");
-	while (i<MAX_ARRAY_STRING_A){
-		fgets(A[i], MAX_STRING_CAP, stdin);
-		if (strcmp(A[i],"done") == 0) break;
-		++i;
-
+	while (n<MAX_ARRAY_STRING_A && strcmp(A[n-1],"done") != 10){
+		fgets(A[n], MAX_STRING_CAP, stdin);
+		++n;
 	}
+	--n;
 	printf("B : \n");
 
-	i = 0;
+	int k = 0;
 
-	while (i < MAX_ARRAY_STRING_B) {
-		fgets(B[i], MAX_STRING_CAP, stdin);
-		if (strcmp(B[i],"done") == 0) break;
-		++i;
+	while (k < MAX_ARRAY_STRING_B && strcmp(B[k-1],"done") != 10) {
+		fgets(B[k], MAX_STRING_CAP, stdin);
+		++k;
 	}
+	--k;
 
-	for (int i = 0; i < MAX_ARRAY_STRING_A+MAX_ARRAY_STRING_B; ++i){
-		if (i < MAX_ARRAY_STRING_A) strcpy(FUS[i], A[i]);
-		else strcpy(FUS[i], B[i-MAX_ARRAY_STRING_A]);
+	char FUS[n + k][MAX_STRING_CAP];
+
+
+	for (int i = 0; i < n+k; ++i){
+		if (i < n) strcpy(FUS[i], A[i]);
+		else strcpy(FUS[i], B[i-n]);
 	}
 	char temp[MAX_STRING_CAP];
 	// Bubble sorting 
-	for (int i = 0; i < MAX_ARRAY_STRING_A + MAX_ARRAY_STRING_B - 1; ++i) {
-		for (int j = 0; j < MAX_ARRAY_STRING_A + MAX_ARRAY_STRING_B - i - 1; ++j) {
+	for (int i = 0; i < n + k - 1; ++i) {
+		for (int j = 0; j < n + k - i - 1; ++j) {
 			/*
 			Return Value	Remarks
 			0				if strings are equal
@@ -53,7 +55,7 @@ int main() {
 	}
 
 	printf("FUS : \n");
-	for (i = 0; i < MAX_ARRAY_STRING_A + MAX_ARRAY_STRING_B; ++i)
+	for (int i = 0; i < n + k; ++i)
 		printf("%s",FUS[i]);
 
 

@@ -46,7 +46,7 @@ void ajouterMonome(Polynome *p, float coeff, unsigned int exp) {
 			return;
 		}
 		else if (cour->exp == exp) {
-			cour->suivant->coeff = coeff;
+			cour->suivant->coeff += coeff;
 			return;
 		}
 		temp = cour;
@@ -59,7 +59,7 @@ void ajouterMonome(Polynome *p, float coeff, unsigned int exp) {
 void affiche(Polynome* p) {
 	Monome* cour = p->debut;
 	while (cour != NULL) {
-		printf("%d \t", cour->exp);
+		printf("%f \t", cour->coeff);
 		cour = cour->suivant;
 	}
 	printf("\n");
@@ -74,6 +74,7 @@ int main() {
 	ajouterMonome(p, 23, 23);
 	ajouterMonome(p, 24, 70);
 	ajouterMonome(p, 132, 2);
+	ajouterMonome(p, 100, 2);
 	ajouterMonome(p, 4, 34);
 	ajouterMonome(p, 54, 1);
 
