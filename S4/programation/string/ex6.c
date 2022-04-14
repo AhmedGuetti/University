@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <ctype.h>
 
 
 const char* VerbTerm[6] = {"e","es","e","ons","ez","ent"};
@@ -46,6 +46,12 @@ int main() {
 	char verb[100];
 	printf("Saisir un verbe de 1 er group \n");
 	scanf("%s", verb);
+	//*verb = tolower(*verb);
+	int i=0;
+	while(verb[i] != NULL){
+		verb[i] = tolower(verb[i]);
+		++i;
+	}
 	Conjuger(verb);
 
 	return 0;
