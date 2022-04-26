@@ -3,3 +3,4 @@
 *.lst
 *.ilk
 *.pdb
+build/
