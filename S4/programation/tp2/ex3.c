@@ -24,7 +24,6 @@ void tick(){
 			if(iMinutes == 0){
 				++iHeures;
 				iHeures = iHeures % 60;
-
 			}
 		}
 
@@ -33,10 +32,13 @@ void tick(){
 
 int main(){
 	saisir_heure(0,1,59);
-	affiche_heure();
-	tick();
-	affiche_heure();
-        tick();
-        affiche_heure();	
+	
+
+	while(1){
+		tick();
+		affiche_heure();
+		sleep(1);
+		system("cls");
+	}	
 	return 0;
 }

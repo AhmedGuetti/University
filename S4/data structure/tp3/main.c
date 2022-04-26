@@ -1,24 +1,63 @@
 #include <stdio.h>
 #include "stack.h"
+#include "stackchar.h"
+
+
+
+int balencebracket(Stackchar* SR,char* token){
+    int i = 0;
+    char top;
+    while(token[i] != '\0'){
+
+        if(token[i] == '(' ||token[i] == '[' ||token[i] == '{')
+            Empilerchar(SR, token[i]);
+
+        if(token[i] == ')'){
+            top = SR->head->data;
+            Depilerchar(SR);
+            if(top == '{' || top == '[')
+                return -1;
+        }
+
+
+        else if(token[i] == ']'){
+            top = SR->head->data;
+            Depilerchar(SR);
+            if(top == '{' || top == '(')
+                return -1;
+        }       
+            
+            else if(token[i] == '}'){
+                top = SR->head->data;
+                Depilerchar(SR);
+                if(top == '(' || top == '[')
+                    return -1;
+            }
+        
+        ++i;
+    }
+            if(SR->size == 0) return 0;
+            return -1;
+}
 
 
 int main(){
-    Stack* S = initStack();
-    Empiler(S,4);
-    Empiler(S,8);
-    Empiler(S,2);
-    Empiler(S,1);
-    Afficher(S);
 
-
-    Depiler(S);
-    Depiler(S);
-    Depiler(S);
-    Afficher(S);
-
+    Stackchar* Sdet = initStackchar();
+    char* test = "{(x+1)/2]}+[2]";
     
-    Vider(S);
-    Afficher(S);
+    int isOk = balencebracket(Sdet,test);
+    if(!isOk){
+        printf("SYNTAX OK");
+    }else{
+        printf("SNTAX DUMP");
+    }
+
+
+
+   
+
+
 return 0;
 
 
