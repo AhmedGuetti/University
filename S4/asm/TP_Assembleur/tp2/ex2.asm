@@ -36,7 +36,7 @@ call WriteInt
 call crlf 
 
 
-
+call ReadInt
 exit
 main ENDP
 END main

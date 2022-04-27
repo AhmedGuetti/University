@@ -27,6 +27,9 @@ deb:
 	jmp deb
 fin:
 
+
+
+call ReadInt
 exit
 main ENDP
 END main

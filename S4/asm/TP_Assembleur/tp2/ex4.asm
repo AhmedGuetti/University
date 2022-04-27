@@ -23,13 +23,8 @@ mov b, eax
 
 cmp eax, ebx
 jg greater
-
-
 mov eax, ebx
-mov edx, OFFSET msg2
-call WriteString
-call WriteInt
-jmp stop
+
 
 greater:
 mov edx, OFFSET msg2
@@ -37,6 +32,9 @@ call WriteString
 call WriteInt
 
 stop:
+
+
+call ReadInt
 exit
 main ENDP
 END main

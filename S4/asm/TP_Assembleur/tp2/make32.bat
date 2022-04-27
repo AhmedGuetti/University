@@ -9,6 +9,7 @@ REM ********************************************BEGIN customize
 SET PATH=C:\Masm615
 SET INCLUDE=C:\Masm615\INCLUDE
 SET LIB=C:\Masm615\LIB
+SET BUILD=bin
 REM ********************************************END customize
 
 ML -Zi -c -Fl -coff %1.asm
@@ -20,6 +21,7 @@ LINK32 %1.obj irvine32.lib kernel32.lib /SUBSYSTEM:CONSOLE /DEBUG
 if errorLevel 1 goto terminate
 
 dir %1.*
-
+del *.ilk *.pdb *.lst *.obj 
+move *.exe bin
 :terminate
 pause

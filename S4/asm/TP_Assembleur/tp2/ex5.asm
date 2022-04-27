@@ -26,7 +26,7 @@ call WriteInt
 stop:
 
 
-
+call ReadInt
 exit
 main ENDP
 END main
