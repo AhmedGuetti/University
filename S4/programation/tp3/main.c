@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include<stdlib.h>
 #include <string.h>
+#include "crypt.h"
 //#include "def_types.h"
 
 
@@ -118,12 +119,14 @@ void addUser(list_user* userList){
         printf("3- use apogee \n");
         int choice;
         scanf("%d",&choice);
+        identification id;
 
         switch (choice){
             case 1:
                 clear();
                 printf("Enter CIN : ");
                 scanf("%s",login.CIN);
+                id = CIN; 
                 getc(stdin);
                 //scanf("%c");
                 break;
@@ -131,6 +134,7 @@ void addUser(list_user* userList){
                 clear();
                 printf("Enter CNE : ");
                 scanf("%s",login.CNE);
+                id = CNE;
                 getc(stdin);
                 //scanf("%c");
                 break;
@@ -138,6 +142,7 @@ void addUser(list_user* userList){
                 clear();
                 printf("Enter APROGEE : ");
                 scanf("%d",&login.APOGEE);
+                id = APOGEE;
                 break;
             default:
                 fprintf(stderr, "Value entered is incorrect please chode 1 or 2 ,3");
@@ -158,13 +163,13 @@ void addUser(list_user* userList){
     printf("Enter the date of birth : ");
     scanf("%s", date);
 
-    Type_Utilisateure type;
 
     clear();
     printf("\n============================== MENU ==================================\n");
     printf("1- ADMINISTRATEUR \n");
     printf("2- ETUDIANT \n");
     scanf("%d",&choice);
+    Type_Utilisateure type;
     if(choice == 1){
         type = ADMINISTRATEUR;
     }else{
@@ -172,7 +177,7 @@ void addUser(list_user* userList){
     }
 
     User* newNode = makeUser(name,lastName,password,date, type,login);
-    newNode->id = (*userList)->id + 1;
+    newNode->id = id;
     newNode->suivant = *userList;
     *userList = newNode;
 }
@@ -180,13 +185,18 @@ void addUser(list_user* userList){
 void DisplayUsers(list_user* userList){
     User* temp = *userList;
     while(temp != NULL){
-        printf("id : %d\n",temp->id);
         printf("nom : %s\n",temp->nom);
         printf("prenome : %s\n",temp->prenom);
         printf("password : %s\n",temp->password);
         printf("birth data : %s\n", temp->date_N);
         printf("type : %s\n",(temp->type == ADMINISTRATEUR)?"administrateur":"etudiant");
-        printf("login : %s\t%s\t%d\n",temp->login.CIN,temp->login.CNE,temp->login.APOGEE);
+        if(temp->id == CIN)
+            printf("login : %s\n",temp->login.CIN);
+        if(temp->id == CNE)
+            printf("login : %s\n",temp->login.CNE);
+        if(temp->id == APOGEE)
+            printf("login : %d\n",temp->login.APOGEE);
+        
         temp = temp->suivant;
     }
     printf("\n============================================================\n");
@@ -206,7 +216,6 @@ void menuEtudiant(list_user* userList,list_books* lv){
         printf("2- Se deconnecter \n");
         printf("Tapez votre choix \n");
         scanf("%d",&choice);
-
         switch (choice){
             case 1:
                 clear();
@@ -294,7 +303,8 @@ int autho(list_user* userList, Nom_Utilisateur login, string password){
 
 
 int connect(list_user* userList,list_books* lv){
-    Nom_Utilisateur login;
+        Nom_Utilisateur login;
+        
         clear();
         printf("\n============================== MENU ==================================\n");
         printf("1- use CIN \n");
