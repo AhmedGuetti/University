@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include<stdlib.h>
 #include <string.h>
+#include "def_types.h"
+#include "file.h"
 #include "crypt.h"
 //#include "def_types.h"
 
@@ -15,49 +17,6 @@ void clear() {
 }
 
 
-
-
-
-enum identification{CIN,CNE,APOGEE};
-typedef enum identification identification;
-
-
-enum Type_Utilisateure{ETUDIANT,ADMINISTRATEUR};
-typedef enum Type_Utilisateure Type_Utilisateure;
-
-union Nom_Utilisateur{
-    char CIN[8];
-    char CNE[10] ;
-    int APOGEE ;
-};
-typedef union Nom_Utilisateur Nom_Utilisateur;
-
-
-struct User{
-    identification id;
-    Nom_Utilisateur login;
-    char password[20];
-    Type_Utilisateure type;
-    char nom[20];
-    char prenom[20];
-    char date_N[10];
-    struct User* suivant;
-};
-typedef struct User User;
-
-struct Livre{
-    char ISBN[13];
-    char title[50];
-    char auteur[50];
-    struct Livre* suivant;
-};
-typedef struct Livre Livre;
-
-
-typedef Livre* list_books;
-typedef User* list_user;
-typedef char* string;
-
 /*
     1- Add Users to a list of user 
         1. list 1 student user 
@@ -67,23 +26,11 @@ typedef char* string;
     5- search a user by (CIN CNE Naproge)
 */
 
-User* makeUser(string name, string lastName, string password,string date,Type_Utilisateure type,Nom_Utilisateur login){
-    User* new_node = (User*)malloc(sizeof(User));
-    strcpy(new_node->nom, name);
-    strcpy(new_node->prenom, lastName);
-    strcpy(new_node->password, password);
-    strcpy(new_node->date_N, date);
-    new_node->type = type;
-    new_node->suivant = NULL;
-    new_node->login = login;
-
-    return new_node;
-}
-
 
 void initUsers(list_user* userList,string name, string lastName, string password,string date,Type_Utilisateure type,Nom_Utilisateur login){
-    User* newNode = makeUser(name,lastName,password,date, type,login);
-    newNode->id = 1;
+    char pass[20];
+    strcpy(pass,crypt(password,5));
+    User* newNode = makeUser(name,lastName,pass,date, type,login);
     *userList = newNode;
 }
 
@@ -156,9 +103,10 @@ void addUser(list_user* userList){
     char lastName[20];
     printf("Enter the last name : ");
     scanf("%s", lastName);
-    char password[20];
+    char password[20],pass[20];
     printf("Enter the password : ");
-    scanf("%s", password);
+    scanf("%s", pass);
+    strcpy(password,crypt(pass,5));
     char date[10];
     printf("Enter the date of birth : ");
     scanf("%s", date);
@@ -178,8 +126,10 @@ void addUser(list_user* userList){
 
     User* newNode = makeUser(name,lastName,password,date, type,login);
     newNode->id = id;
+    writeUser(newNode);
     newNode->suivant = *userList;
     *userList = newNode;
+    
 }
 
 void DisplayUsers(list_user* userList){
@@ -191,11 +141,11 @@ void DisplayUsers(list_user* userList){
         printf("birth data : %s\n", temp->date_N);
         printf("type : %s\n",(temp->type == ADMINISTRATEUR)?"administrateur":"etudiant");
         if(temp->id == CIN)
-            printf("login : %s\n",temp->login.CIN);
+            printf("login CIN : %s\n",temp->login.CIN);
         if(temp->id == CNE)
-            printf("login : %s\n",temp->login.CNE);
+            printf("login CNE: %s\n",temp->login.CNE);
         if(temp->id == APOGEE)
-            printf("login : %d\n",temp->login.APOGEE);
+            printf("login APOGEE: %d\n",temp->login.APOGEE);
         
         temp = temp->suivant;
     }
@@ -290,7 +240,7 @@ int autho(list_user* userList, Nom_Utilisateur login, string password){
     while(temp != NULL){
 
         if(login.CIN == temp->login.CIN || login.CNE == temp->login.CNE || login.APOGEE == temp->login.APOGEE){
-            if(!strcmp(temp->password,password)){
+            if(!strcmp(temp->password,decrypt(password,5))){
                 return i;
             } 
             break;
@@ -367,8 +317,7 @@ int main (){
     Nom_Utilisateur login;
     strcpy(login.CIN , "FH8999");
     initUsers(user_head, "John","Doe","010101","01/01/1970",ADMINISTRATEUR,login);
-
-
+    readUser(user_head);
     list_books* books_head = (list_books*)malloc(sizeof(list_books));
     addbook(books_head,"73434523","Living in the Light","David Sargent");
     addbook(books_head,"43242232","In Cold Blood","Truman Capot");
