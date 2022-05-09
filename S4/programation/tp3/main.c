@@ -126,7 +126,7 @@ void addUser(list_user* userList){
 
     User* newNode = makeUser(name,lastName,password,date, type,login);
     newNode->id = id;
-    writeUser(newNode);
+    //writeUser(newNode);
     newNode->suivant = *userList;
     *userList = newNode;
     
@@ -317,7 +317,7 @@ int main (){
     Nom_Utilisateur login;
     strcpy(login.CIN , "FH8999");
     initUsers(user_head, "John","Doe","010101","01/01/1970",ADMINISTRATEUR,login);
-    readUser(user_head);
+    //readUser(user_head);
     list_books* books_head = (list_books*)malloc(sizeof(list_books));
     addbook(books_head,"73434523","Living in the Light","David Sargent");
     addbook(books_head,"43242232","In Cold Blood","Truman Capot");
